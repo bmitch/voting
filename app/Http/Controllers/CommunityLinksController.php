@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\CommunityLink;
-use App\Http\Requests;
 
 class CommunityLinksController extends Controller
 {
@@ -12,5 +12,13 @@ class CommunityLinksController extends Controller
 		$links = CommunityLink::paginate(25);
 
 		return view('community.index', compact('links'));
+	}
+
+	public function store(Request $request)
+	{
+		CommunityLink::from(auth()->user())
+			->contribute($request->all());
+
+		return back();
 	}
 }
