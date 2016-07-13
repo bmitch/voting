@@ -12,6 +12,9 @@
 
 				@foreach ($links as $link)
 					<li class="Links__link">
+						<span class="label label-default" style="background: {{ $link->channel->colour }}">
+						 {{ $link->channel->title }}
+						</span>
 						<a href="{{ $link->link }}" target="_blank">
 							{{ $link->title}}
 						</a>
