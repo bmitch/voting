@@ -4,13 +4,12 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<h1>Community</h1>
+				<h3>Community</h3>
 
-				<ul class="Links">
-				</ul>
+				<ul class="list-group">
 
 				@foreach ($links as $link)
-					<li class="Links__link">
+					<li class="list-group-item">
 						<span class="label label-default" style="background: {{ $link->channel->colour }}">
 						 {{ $link->channel->title }}
 						</span>
@@ -24,6 +23,7 @@
 					</li>
 				@endforeach
 			</div>
+				</ul>
 
 			@include('community.add-link')
 
