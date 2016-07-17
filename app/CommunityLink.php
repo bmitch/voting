@@ -55,6 +55,13 @@ class CommunityLink extends Model
 
     protected function hasAlreadyBeenSubmitted($link)
     {
-        return static::where('link', $link)->first();
+    }
+
+    public function scopeForChannel($builder, $channel)
+    {
+        if ($channel->exists) {
+            return $builder->where('channel_id', $channel->id);
+        }
+        return $builder;
     }
 }

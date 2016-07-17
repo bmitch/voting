@@ -9,12 +9,16 @@ use App\Exceptions\CommunityLinkAlreadySubmitted;
 
 class CommunityLinksController extends Controller
 {
-	public function index()
+	public function index(Channel $channel = null)
 	{
-		$links = CommunityLink::where('approved', 1)->latest('updated_at')->paginate(25);
+		$links = CommunityLink::forChannel($channel)
+			->where('approved', 1)
+			->latest('updated_at')
+			->paginate(25);
+
 		$channels = Channel::orderBy('title', 'asc')->get();
 
-		return view('community.index', compact('links', 'channels'));
+		return view('community.index', compact('links', 'channels', 'channel'));
 	}
 
 	public function store(CommunityLinkForm $form)
