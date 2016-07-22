@@ -2,6 +2,9 @@
 
 	@foreach ($links as $link)
 	<li class="list-group-item">
+		@if (Auth::check() && Auth::user()->votedFor($link))
+			+1
+		@endif
 		<a href="/community/{{ $link->channel->slug }}" class="label label-default" style="background: {{ $link->channel->colour }}">
 		 {{ $link->channel->title }}
 		</a>
